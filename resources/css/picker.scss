@@ -1,0 +1,58 @@
+@import 'flatpickr-jalali-support/dist/flatpickr.min.css';
+
+.flatpickr-calendar {
+  &.light {
+    background: white;
+    color: black;
+  }
+
+  &.dark {
+    background: #3b3b3b;
+    box-shadow: none;
+    border: 1px solid #000;
+    color: #fff;
+
+    &.arrowTop:before {
+      border-bottom-color: #09090b;
+    }
+
+    .flatpickr-months {
+      .flatpickr-prev-month,
+      .flatpickr-next-month,
+      .flatpickr-current-month input.cur-year,
+      .flatpickr-current-month .flatpickr-monthDropdown-months{
+        color: #99c8ff;
+        fill: #99c8ff;
+      }
+    }
+
+    .flatpickr-weekday {
+      color: #99c8ff;
+      fill: #99c8ff;
+    }
+
+    .flatpickr-day {
+      color: #fff;
+
+      &.selected {
+        background: #3b82f6;
+        color: white;
+      }
+
+      &.inRange,
+      &.prevMonthDay.inRange,
+      &.nextMonthDay.inRange,
+      &.today.inRange,
+      &.prevMonthDay.today.inRange,
+      &.nextMonthDay.today.inRange,
+      &:hover,
+      &.prevMonthDay:hover,
+      &.nextMonthDay:hover,
+      &:focus,
+      &.prevMonthDay:focus,
+      &.nextMonthDay:focus {
+        color: #000;
+      }
+    }
+  }
+}

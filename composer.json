@@ -1,0 +1,28 @@
+{
+  "name": "pooriajahedi/filament-jalali-datepicker",
+  "description": "Jalali Datepicker for Laravel Filament",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Pooria Jahedi",
+      "email": "your-email@example.com"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "filament/filament": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pooriajahedi\\JalaliDatePicker\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "JalaliDatePickerServiceProvider"
+      ]
+    }
+  },
+  "version": "dev-main"
+}
