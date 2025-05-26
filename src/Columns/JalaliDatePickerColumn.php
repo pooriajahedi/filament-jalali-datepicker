@@ -5,25 +5,17 @@ namespace Pooriajahedi\JalaliDatePicker\Columns;
 use Filament\Tables\Columns\TextColumn;
 use Morilog\Jalali\Jalalian;
 
-class JalaliDatePickerColumn extends TextColumn
+class JalaliDatePickerColumn
 {
-    public function getState(): string
+    public static function make(string $name, string $format = 'Y/m/d H:i'): TextColumn
     {
-        $value = parent::getState();
-
-        if (!$value) {
-            return '-';
-        }
-
-        try {
-            return Jalalian::fromDateTime($value)->format('Y/m/d');
-        } catch (\Exception $e) {
-            return $value;
-        }
-    }
-
-    public static function make(string $name): static
-    {
-        return parent::make($name)->label('تاریخ شمسی')->alignRight()->sortable();
+        return TextColumn::make($name)
+            ->label(__('تاریخ'))
+            ->getStateUsing(function ($record) use ($name, $format) {
+                $value = data_get($record, $name);
+                return $value ? Jalalian::fromDateTime($value)->format($format) : '-';
+            })
+            ->html()
+            ->sortable();
     }
 }

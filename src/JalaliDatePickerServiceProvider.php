@@ -19,8 +19,8 @@ class JalaliDatePickerServiceProvider extends ServiceProvider
         ], 'jalali-datepicker-assets');
 
         FilamentAsset::register([
-            Js::make('jalali-date-picker', asset('vendor/jalali-date-picker/assets/picker.js')),
-            Css::make('jalali-date-picker-css', asset('vendor/jalali-date-picker/assets/picker.css')),
+            Js::make('jalali-date-picker', asset('vendor/pooriajahedi/jalali-date-picker/assets/picker.js')),
+            Css::make('jalali-date-picker-css', asset('vendor/pooriajahedi/jalali-date-picker/assets/picker.css')),
         ]);
 
         FilamentView::registerRenderHook(

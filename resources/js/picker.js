@@ -25,6 +25,22 @@ function safeLivewireDispatch(name, value) {
     waitForLivewire();
 }
 
+function getOutputFormat(flatpickrFormat) {
+    return flatpickrFormat.includes('H') || flatpickrFormat.includes('i')
+        ? 'YYYY-MM-DD HH:mm'
+        : 'YYYY-MM-DD';
+}
+
+function convertFlatpickrFormatToMoment(format) {
+    return format
+        .replace(/Y/g, 'jYYYY')
+        .replace(/m/g, 'jMM')
+        .replace(/d/g, 'jDD')
+        .replace(/H/g, 'HH')
+        .replace(/i/g, 'mm')
+        .replace(/S/g, 'ss');
+}
+
 window.initJalaliFlatpickr = function (element, options = {}) {
     const getTheme = () => document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 
@@ -44,6 +60,8 @@ window.initJalaliFlatpickr = function (element, options = {}) {
     const fp = flatpickr(element, {
         ...flatpickrOptions,
 
+        defaultDate: element.value || null,
+
         onReady(selectedDates, dateStr, instance) {
             const theme = getTheme();
             instance.calendarContainer.classList.remove('dark', 'light');
@@ -59,16 +77,24 @@ window.initJalaliFlatpickr = function (element, options = {}) {
         onChange(selectedDates, dateStr) {
             if (!options.name) return;
 
+            const format = options.dateFormat || 'Y-m-d';
+            const momentFormat = convertFlatpickrFormatToMoment(format);
+            const outputFormat = getOutputFormat(format);
+
             if (selectedDates.length === 2) {
-                const fromShamsi = flatpickr.formatDate(selectedDates[0], 'Y-m-d');
-                const toShamsi = flatpickr.formatDate(selectedDates[1], 'Y-m-d');
-                const from = moment(fromShamsi, 'jYYYY-jMM-jDD').format('YYYY-MM-DD');
-                const to = moment(toShamsi, 'jYYYY-jMM-jDD').format('YYYY-MM-DD');
+                const fromShamsi = flatpickr.formatDate(selectedDates[0], format);
+                const toShamsi = flatpickr.formatDate(selectedDates[1], format);
+
+                const from = moment(fromShamsi, momentFormat).format(outputFormat);
+                const to = moment(toShamsi, momentFormat).format(outputFormat);
+
+                console.log({from,to})
                 safeLivewireDispatch(options.name, { from, to });
 
             } else if (selectedDates.length === 1) {
-                const dateShamsi = flatpickr.formatDate(selectedDates[0], 'Y-m-d');
-                const miladi = moment(dateShamsi, 'jYYYY-jMM-jDD').format('YYYY-MM-DD');
+                const dateShamsi = flatpickr.formatDate(selectedDates[0], format);
+                const miladi = moment(dateShamsi, momentFormat).format(outputFormat);
+
                 safeLivewireDispatch(options.name, miladi);
             }
         },

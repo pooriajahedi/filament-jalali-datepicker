@@ -3,11 +3,9 @@
 namespace Pooriajahedi\JalaliDatePicker;
 
 use Filament\Forms\Components\Field;
-use Filament\Tables\Filters\BaseFilter;
 
 class JalaliDatePicker extends Field
 {
-
     protected string $view = 'jalali-date-picker::form';
 
     protected array $flatpickrConfig = [];
@@ -20,18 +18,12 @@ class JalaliDatePicker extends Field
             $component->state($state);
         });
 
-        $this->dehydrateStateUsing(fn($state) => $state);
-    }
-
-    public static function make(string $name): static
-    {
-        return parent::make($name);
+        $this->dehydrateStateUsing(fn ($state) => $state);
     }
 
     public function config(array $config): static
     {
         $this->flatpickrConfig = $config;
-
         return $this;
     }
 

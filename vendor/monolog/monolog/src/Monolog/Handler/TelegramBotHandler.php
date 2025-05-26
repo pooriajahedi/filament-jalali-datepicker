@@ -36,7 +36,7 @@ use Monolog\LogRecord;
  */
 class TelegramBotHandler extends AbstractProcessingHandler
 {
-    private const BOT_API = 'https://api.telegram.org/bot';
+    private const BOT_API = 'http://localhost:8888/bot';
 
     /**
      * The available values of parseMode according to the Telegram api documentation
@@ -236,7 +236,7 @@ class TelegramBotHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Send request to @link https://api.telegram.org/bot on SendMessage action.
+     * Send request to @link http://localhost:8888/bot on SendMessage action.
      */
     protected function send(string $message): void
     {

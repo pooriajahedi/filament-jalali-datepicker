@@ -56,6 +56,7 @@ return array(
     'Pooriajahedi\\JalaliDatePicker\\' => array($baseDir . '/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'OpenSpout\\' => array($vendorDir . '/openspout/openspout/src'),
+    'Morilog\\Jalali\\' => array($vendorDir . '/morilog/jalali/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Masterminds\\' => array($vendorDir . '/masterminds/html5/src'),
     'Livewire\\' => array($vendorDir . '/livewire/livewire/src'),
@@ -100,5 +101,6 @@ return array(
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'BladeUI\\Icons\\' => array($vendorDir . '/blade-ui-kit/blade-icons/src'),
     'BladeUI\\Heroicons\\' => array($vendorDir . '/blade-ui-kit/blade-heroicons/src'),
+    'Assert\\' => array($vendorDir . '/beberlei/assert/lib/Assert'),
     'AnourValar\\EloquentSerialize\\' => array($vendorDir . '/anourvalar/eloquent-serialize/src'),
 );

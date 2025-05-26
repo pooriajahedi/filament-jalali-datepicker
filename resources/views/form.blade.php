@@ -1,13 +1,18 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
     @php
          $config = $getFlatpickrConfig();
-        $config['name'] = (string) $getStatePath();
+         $config['name'] = (string) $getStatePath();
          $config['getId'] = (string) $getId();
+         $state = $getState();
+         $value = is_array($state)
+        ? implode(' to ', array_filter([$state['from'] ?? null, $state['to'] ?? null]))
+        : $state;
     @endphp
 
     <div x-data="{}" x-init="window.initJalaliFlatpickr($refs.input, {{ json_encode($config) }})" class="relative">
         <input
                 type="text"
+                value="{{ $value }}"
                 id="{{ $getId() }}"
                 x-ref="input"
                 wire:ignore

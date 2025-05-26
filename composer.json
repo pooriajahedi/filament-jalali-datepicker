@@ -10,7 +10,8 @@
   ],
   "require": {
     "php": "^8.2",
-    "filament/filament": "^3.3"
+    "filament/filament": "^3.3",
+    "morilog/jalali": "^3.4"
   },
   "autoload": {
     "psr-4": {
@@ -20,7 +21,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "JalaliDatePickerServiceProvider"
+        "Pooriajahedi\\JalaliDatePicker\\JalaliDatePickerServiceProvider"
       ]
     }
   },
